@@ -1,29 +1,36 @@
 /// @file hello_tiny_world.ino
 /// @brief Test output modes
-/// @author montoyamoraga, peter-parque, maxzwang
-/// @date March 2021
 
-// include main library
+// define input and output
+#define INPUT_NONE
+#define OUTPUT_NONE
+
+// include library TinyTrainable
 #include <TinyTrainable.h>
 
-// declare instance of instrument
-TinyTrainable tiny;
+// declare instance of a TinyTrainable instrument
+TinyTrainable myTiny(new Input(), new Output());
 
-// output mode to test, other possible values:
-// outputLED, outputMIDI, outputSerialUSB
-OutputMode outputToTest = outputBuzzer;
+// output mode to test, possible values:
+// outputBuzzer, outputLED, outputMIDI, outputSerialUSB, outputServo
+// outputUndefined tests that the arduino is correctly connected
+//OutputMode outputToTest = outputServo;
 
 // hardware constants
-const int outputPin = 8;
+const int outputPin = 9;
 
 // setup() runs once, at the beginning
 void setup() {
   // setup the test
-  tiny.helloOutputsSetup(outputToTest, outputPin);
+
+  // setup for outputBuzzer, outputLED, and outputServo (that have pins)
+  //  tiny.helloOutputsSetup(outputToTest, outputPin);
+  // setup for outputMIDI, outputSerialUSB, and outputUndefined (outputs without
+  // pins) tiny.helloOutputsSetup(outputToTest);
 }
 
 // loop() runs in a loop, after setup()
 void loop() {
   // test the output
-  tiny.helloOutputs(outputToTest);
+  //  tiny.helloOutputs(outputToTest);
 }
